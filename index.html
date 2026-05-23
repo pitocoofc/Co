@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Ler TXT com JavaScript</title>
+</head>
+<body>
+    <h1>Conteúdo do Arquivo:</h1>
+       <div id="conteudo-texto">Carregando...</div>
+
+    <script>
+                async function lerArquivoTxt() {
+            try {
+                              const resposta = await fetch('C.txt'); 
+                
+                if (!resposta.ok) {
+                    throw new Error('Erro ao carregar o arquivo.');
+                }
+                
+                const texto = await resposta.text();
+                
+              
+                document.getElementById('conteudo-texto').innerText = texto;
+            } catch (erro) {
+                console.error(erro);
+                document.getElementById('conteudo-texto').innerText = 'Não foi possível carregar o arquivo.';
+            }
+        }
+
+        // Chama a função ao carregar a página
+        lerArquivoTxt();
+    </script>
+</body>
+</html>
